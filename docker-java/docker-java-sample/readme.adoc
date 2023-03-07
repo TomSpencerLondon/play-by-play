@@ -1,0 +1,32 @@
+= Docker Java Sample
+
+This repository contain samples that shows integration of Docker and Java.
+
+== Maven
+
+=== Classical
+
+. Build app: `mvn package`
+. Run app: `mvn exec:java`
+
+=== With Docker
+
+. Build image: `mvn package -Pdocker`
+. Run container: `mvn install -Pdocker`
+
+=== With DC/OS
+
+. Run application: `mvn install -Pdcos`
+
+== Gradle
+
+=== Classical
+
+. Build app: `./gradlew build`
+. Run app: `./gradlew run`
+
+=== With Docker
+
+. Build image: `./gradlew dockerBuildImage`
+. Run container: `./gradlew startContainer`
+

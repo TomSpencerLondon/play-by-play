@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-docker-plugin:3.0.6'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'com.bmuschko.docker-java-application'
+
+import com.bmuschko.gradle.docker.tasks.container.*
+import com.bmuschko.gradle.docker.tasks.image.*
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = 'org.examples.java'
+version = '1.0-SNAPSHOT'
+
+mainClassName = "org.examples.java.App"
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+docker {
+    javaApplication {
+        baseImage = 'openjdk:latest'
+        tag = 'hellojava'
+    }
+}
+
+task createContainer(type: DockerCreateContainer) {
+    dependsOn dockerBuildImage
+    targetImageId { dockerBuildImage.getImageId() }
+}
+
+task startContainer(type: DockerStartContainer) {
+    dependsOn createContainer
+    targetContainerId { createContainer.getContainerId() }
+}

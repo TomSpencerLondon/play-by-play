@@ -1,0 +1,21 @@
+.dcos-token
+.gradle
+.DS_Store
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#Build targets
+/target
+*/target
+build
+
+.idea/
+*.class
+*.iml
+.classpath
+.project
+.settings/
