@@ -7,40 +7,40 @@ Arun Gupta
 Michael Hoffman
 
 Basic and advanced concepts for docker from java dev
- • docker compose, docker fundamentals, docker swarm
- • package entire app once to run anywhere
- • docker at high level
- • basic and advanced for Java
+ - docker compose, docker fundamentals, docker swarm
+ - package entire app once to run anywhere
+ - docker at high level
+ - basic and advanced for Java
 Arun Gupta - Docker captain
- • Java champion + Docker expert
+ - Java champion + Docker expert
 What is Docker
- • open source
- • started in France
- • Write once and Run any where WORA - Java - JVM understands (jar, war, ear)
- • PODA - package once deploy anywhere
-   • image on linux run on linux
- • Java - environment locally - JVM environment tomcat on windows + deploy to linux
-   • docker reduce impedence mismatch for different environments
+ - open source
+ - started in France
+ - Write once and Run any where WORA - Java - JVM understands (jar, war, ear)
+ - PODA - package once deploy anywhere
+   - image on linux run on linux
+ - Java - environment locally - JVM environment tomcat on windows + deploy to linux
+   - docker reduce impedence mismatch for different environments
 
 Docker Engine understands docker image
- • Docker C groups and namespaces -> control to run application
- • app -> docker engine -> operating system (kernel) -> infrastructure
- • Allows higher density and throughput -> starts up faster
- • 100s of docker containers versus VM which eats up memory
+ - Docker C groups and namespaces -> control to run application
+ - app -> docker engine -> operating system (kernel) -> infrastructure
+ - Allows higher density and throughput -> starts up faster
+ - 100s of docker containers versus VM which eats up memory
 3 pieces of docker
- • client
-   • docker build
-   • docker pull
-   • docker run
- • docker host (docker daemon)
-   • containers
-   • images
- • registry
-   • SaaS people push image
-   • similar to maven for common libraries -> maven central for all docker repos
-   • ubuntu, centos, couchbase, nginx
-   • people created multipurpose images -> ubuntu-java - dependency on ubuntu
-     • easy from user perspective download all dependencies
+ - client
+   - docker build
+   - docker pull
+   - docker run
+ - docker host (docker daemon)
+   - containers
+   - images
+ - registry
+   - SaaS people push image
+   - similar to maven for common libraries -> maven central for all docker repos
+   - ubuntu, centos, couchbase, nginx
+   - people created multipurpose images -> ubuntu-java - dependency on ubuntu
+     - easy from user perspective download all dependencies
 client talk to docker host and run image - client is dumb client
 Docker host has rest endpoint to list to client - requests via tcp
 client is dumb - all state controlled by host itself
