@@ -86,3 +86,62 @@ tom@tom-ubuntu:~/Desktop/play-by-play$ sudo docker run 5300
 Hello world
 
 ```
+
+## Docker java file inside hello-java
+
+```bash
+
+tom@tom-ubuntu:~/Desktop/play-by-play/hello-java$ java -version
+openjdk version "11.0.18" 2023-01-17
+OpenJDK Runtime Environment (build 11.0.18+10-post-Ubuntu-0ubuntu122.10)
+OpenJDK 64-Bit Server VM (build 11.0.18+10-post-Ubuntu-0ubuntu122.10, mixed mode, sharing)
+tom@tom-ubuntu:~/Desktop/play-by-play/hello-java$ javac Hello.java
+tom@tom-ubuntu:~/Desktop/play-by-play/hello-java$ ls
+Hello.class  Hello.java
+tom@tom-ubuntu:~/Desktop/play-by-play/hello-java$ jar cvf hello.jar Hello.class
+added manifest
+adding: Hello.class(in = 416) (out= 285)(deflated 31%)
+tom@tom-ubuntu:~/Desktop/play-by-play/hello-java$ jar tf hello.jar
+META-INF/
+META-INF/MANIFEST.MF
+Hello.class
+tom@tom-ubuntu:~/Desktop/play-by-play/hello-java$ jar xvf hello.jar
+  created: META-INF/
+ inflated: META-INF/MANIFEST.MF
+ inflated: Hello.class
+
+```
+
+Run java dockerfile:
+
+```bash
+
+tom@tom-ubuntu:~/Desktop/play-by-play/hello-java$ sudo docker build -t "hello-java:Dockerfile" .
+[+] Building 12.2s (9/9) FINISHED                                                                    
+ => [internal] load build definition from Dockerfile                                            0.0s
+ => => transferring dockerfile: 193B                                                            0.0s
+ => [internal] load .dockerignore                                                               0.0s
+ => => transferring context: 2B                                                                 0.0s
+ => [internal] load metadata for docker.io/library/alpine:latest                                1.5s
+ => [auth] library/alpine:pull token for registry-1.docker.io                                   0.0s
+ => [internal] load build context                                                               0.0s
+ => => transferring context: 456B                                                               0.0s
+ => [1/3] FROM docker.io/library/alpine:latest@sha256:69665d02cb32192e52e07644d76bc6f25abeb541  0.1s
+ => => resolve docker.io/library/alpine:latest@sha256:69665d02cb32192e52e07644d76bc6f25abeb541  0.1s
+ => => sha256:69665d02cb32192e52e07644d76bc6f25abeb5410edc1c7a81a10ba3f0efb90a 1.64kB / 1.64kB  0.0s
+ => => sha256:e2e16842c9b54d985bf1ef9242a313f36b856181f188de21313820e177002501 528B / 528B      0.0s
+ => => sha256:b2aa39c304c27b96c1fef0c06bee651ac9241d49c4fe34381cab8453f9a89c7d 1.47kB / 1.47kB  0.0s
+ => [2/3] ADD Hello.class Hello.class                                                           0.1s
+ => [3/3] RUN apk --update add openjdk11-jre                                                    9.5s
+ => exporting to image                                                                          0.9s
+ => => exporting layers                                                                         0.9s
+ => => writing image sha256:61add0199393d6e12fb3c9bb50dc13098a3acd73c7188b65f91fa56aa1866671    0.0s 
+ => => naming to docker.io/library/hello-java:Dockerfile                                        0.0s 
+tom@tom-ubuntu:~/Desktop/play-by-play/hello-java$ sudo docker images
+REPOSITORY   TAG          IMAGE ID       CREATED          SIZE                                       
+hello-java   Dockerfile   61add0199393   10 seconds ago   184MB
+mysql        latest       57da161f45ac   3 weeks ago      517MB
+tom@tom-ubuntu:~/Desktop/play-by-play/hello-java$ sudo docker run 61add
+Hello world!
+
+```
